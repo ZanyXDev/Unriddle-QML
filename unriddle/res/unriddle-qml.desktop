@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Unriddle-QML
+GenericName=Unriddle-QML
+Comment=The simple game implemented in Qt
+Exec=Unriddle-QML
+Icon=Unriddle-QML
+Terminal=false
+Type=Application
+Categories=Game;Text;Qt;
