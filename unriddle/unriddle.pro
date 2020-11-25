@@ -1,24 +1,13 @@
 TEMPLATE = app
 
-VERSION = 0.0.1
-
-DEFINES += APP_VERSION=\\\"$${VERSION}\\\"
-
-DEFINES += MAIN_QML=\\\"qml/main.qml\\\"
-
 QT += qml quick
-
-CONFIG += link_pkgconfig
-
-static {
-    QT += svg
-    QTPLUGIN += qtvirtualkeyboardplugin
-}
 
 SOURCES += \
     src/main.cpp \
     src/quotesreader.cpp
 
+HEADERS += \
+    src/quotesreader.h
 
 RESOURCES += \
     resources.qrc
@@ -42,10 +31,6 @@ disable-xcb {
     message("The disable-xcb option has been deprecated. Please use disable-desktop instead.")
     CONFIG += disable-desktop
 }
-
-HEADERS += \
-    src/quotesreader.h
-
 
 
 
