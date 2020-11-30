@@ -1,6 +1,8 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml \
+      quick \
+      quickcontrols2
 
 SOURCES += \
     src/main.cpp \
@@ -13,7 +15,7 @@ RESOURCES += \
     resources.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH += $$PWD
 
 # Default rules for deployment.
 #include(deployment.pri)
