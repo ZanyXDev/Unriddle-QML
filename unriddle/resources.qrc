@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>res/fonts/DroidSansFallback.ttf</file>
+        <file>qml/LineEdit.qml</file>
     </qresource>
 </RCC>
