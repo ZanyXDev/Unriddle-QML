@@ -1,5 +1,7 @@
 TEMPLATE = app
 
+CONFIG+=qml_debug
+
 QT += qml \
       quick \
       quickcontrols2

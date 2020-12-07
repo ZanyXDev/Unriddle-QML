@@ -1,13 +1,8 @@
 <RCC>
     <qresource prefix="/">
-	<file>qtquickcontrols2.conf</file>
+        <file>qtquickcontrols2.conf</file>
         <file>res/fonts/DroidSansFallback.ttf</file>
-	<file>qml/main.qml</file>
-
-        <file>qml/Style/qmldir</file>
-        <file>qml/Style/Style.qml</file>
-        <file>qml/Style/Theme.qml</file>
-        <file>qml/Style/ThemeDark.qml</file>
-        <file>qml/Style/ThemeLight.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/TextCell.qml</file>
     </qresource>
 </RCC>
