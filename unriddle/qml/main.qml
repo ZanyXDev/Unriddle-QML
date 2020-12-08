@@ -6,36 +6,44 @@ import QtQuick.Layouts 1.11
 
 ApplicationWindow
 {
-    id:mainwindow
+    id:appWnd
+
+    property int largeFont: 22
+    property int smallFont: 14
+    property string localFont: _localFont.name
+
+    Material.theme: Material.Dark
     visible: true
+    /**
+      * Базовой является плотность mdpi, когда 1px = 1dp.
+      * Остальные являются множителями:
+      * ldpi(0.75x),mdpi(1x),hdpi(1.5x),xhdpi(2.0x),xxhdpi(3.0x),xxxhdpi(4.0x)
+      */
 
-    title: qsTr("Minimal Qml")
+    width: 480
+    height: 720
+    title: qsTr("Unriddle this riddle.")
 
-    FontLoader { id: localFont; source: "qrc:///res/fonts/DroidSansFallback.ttf" }
-
-    // theme
-    font.family: localFont.name
-    font.pointSize: Style.font_default_size
-    font.capitalization: Style.font_default_capitalization
-
-    //Material.theme: Style.material_theme
-    //Material.accent: Style.material_accent
+    FontLoader {
+        id: _localFont;
+        source: "qrc:///res/fonts/DroidSansFallback.ttf"
+    }
 
     Grid{
         anchors.fill: parent
-        anchors.margins: 8
-        spacing: 4
+        anchors.margins: 4
+        spacing: 1
         Repeater {
             model: 24
-            TextCell{}
+            TextCell{
+                textOpen: "Я"
+                textClose: "О"
+                textCount:  index
+                colorOpenText:  Material.color( Material.Red )
+                colorCloseText:  Material.color( Material.Grey)
+                colorCounter:  Material.color( Material.Grey)
+            }
         }
     }
 }
 
-
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

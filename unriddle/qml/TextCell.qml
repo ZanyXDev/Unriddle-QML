@@ -33,8 +33,19 @@ Item {
     id:root
     width: 64
     height: 64
+    // export TextCell properties
+    property alias textOpen:  textOpen.text
+    property alias textClose: textClose.text
+    property alias textCount: textCount.text
+
+    property alias colorOpenText: textOpen.color
+    property alias colorCloseText: closeTextBackground.color
+    property alias colorCounter: countTextBackground.color
+
+    signal clicked
+
     Rectangle {
-        border.color: Qt.lighter("red")
+        border.color: Qt.lighter("grey")
         border.width: 1
         anchors.fill: parent
         MouseArea {
@@ -57,7 +68,8 @@ Item {
             anchors.topMargin: 2
 
             Rectangle {
-                color: "red"
+                id: openTextBackground
+                //color: "red"
                 Layout.row: 1
                 Layout.column: 1
                 Layout.columnSpan: 2
@@ -68,17 +80,20 @@ Item {
                 Text {
                     id: textOpen
                     text: qsTr("A")
+                    color: "red"
                     anchors.fill: parent
-                    font.pixelSize: 24
+
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: appWnd.largeFont
                     font.bold: true
-                    font.family: "Times New Roman"
+                    font.family: appWnd.localFont
                 }
 
             }
 
             Rectangle {
+                id: closeTextBackground
                 color: "green"
 
                 Layout.row: 2
@@ -92,14 +107,17 @@ Item {
                     id: textClose
                     text: qsTr("B")
                     anchors.fill: parent
-                    font.pixelSize: 16
+
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
+
+                    font.pixelSize: appWnd.smallFont
                     font.bold: true
-                    font.family: "Times New Roman"
+                    font.family: appWnd.localFont
                 }
             }
             Rectangle {
+                id: countTextBackground
                 color: "#3465a4"
 
                 Layout.row: 2
@@ -110,13 +128,14 @@ Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Text {
-                    id: textCounter
+                    id: textCount
                     text: qsTr("32")
                     anchors.fill: parent
-                    font.pixelSize: 14
+
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    font.family: "Times New Roman"
+                    font.family: appWnd.localFont
+                    font.pixelSize: appWnd.smallFont
                 }
             }
         }
