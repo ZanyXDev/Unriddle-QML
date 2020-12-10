@@ -7,10 +7,12 @@ QT += qml \
       quickcontrols2
 
 SOURCES += \
+    src/chiphertextmodel.cpp \
     src/main.cpp \
     src/quotesreader.cpp
 
 HEADERS += \
+    src/chiphertextmodel.h \
     src/quotesreader.h
 
 RESOURCES += \
