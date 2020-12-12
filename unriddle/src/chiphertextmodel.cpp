@@ -2,32 +2,90 @@
 
 ChipherTextModel::ChipherTextModel()
 {
-
+    connect(this, &QAbstractListModel::rowsInserted, this, &ChipherTextModel::rowCountChanged);
+    connect(this, &QAbstractListModel::rowsRemoved, this, &ChipherTextModel::rowCountChanged);
 }
 
 void ChipherTextModel::setNewChiperText(QString textData)
 {
-    if (!textData.isEmpty())
-    {
+    if (!textData.isEmpty()){
         beginResetModel();
         m_data.clear();
 #ifdef QT_DEBUG
         m_data.append( {"A","B",1,2,5} );
         m_data.append( {"C","D",1,4,1} );
         m_data.append( {"E","F",1,6,3} );
-#else
-
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
+        m_data.append( {"A","B",1,2,5} );
+        m_data.append( {"C","D",1,4,1} );
+        m_data.append( {"E","F",1,6,3} );
 #endif
         endResetModel();
+        emit rowCountChanged();
     }
 
 }
 
 int ChipherTextModel::rowCount(const QModelIndex &parent) const
 {
-    if (parent.isValid()){
-        return 0;
-    }
+#ifdef QT_DEBUG
+    qDebug()<< "ChipherTextModel::rowCount" << m_data.size();
+#endif
+    Q_UNUSED(parent);
     return m_data.size();
 }
 
@@ -103,11 +161,11 @@ bool ChipherTextModel::setData(const QModelIndex &index, const QVariant &value, 
 QHash<int, QByteArray> ChipherTextModel::roleNames() const
 {
     return {
-        { OpenLetterRole, "OpenLetter" },
-        { CloseLetterRole, "CloseLetter" },
-        { OpenLetterColorRole, "OpenLetterColor" },
-        { CloseLetterIndexRole, "CloseLetterIndex" },
-        { CloseLetterCountRole, "CloseLetterCount" }
+        { OpenLetterRole, "openletter" },
+        { CloseLetterRole, "closeletter" },
+        { OpenLetterColorRole, "openlettercolor" },
+        { CloseLetterIndexRole, "closeletterindex" },
+        { CloseLetterCountRole, "closelettercount" }
     };
 }
 

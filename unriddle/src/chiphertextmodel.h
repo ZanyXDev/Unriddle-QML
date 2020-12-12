@@ -3,6 +3,10 @@
 #include <QAbstractListModel>
 #include <QList>
 
+#ifdef QT_DEBUG
+#include <QDebug>
+#endif
+
 struct ChipherTextItem
 {
     QString OpenLetter;
@@ -16,6 +20,7 @@ struct ChipherTextItem
 class ChipherTextModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
 public:
     enum Roles
     {
@@ -29,10 +34,14 @@ public:
 
     ChipherTextModel();
 
+signals:
+    void rowCountChanged();
+
     // QAbstractItemModel interface
 public:
     void setNewChiperText(QString textData); //Setup new data, update model.
-    int rowCount(const QModelIndex &parent) const override;
+
+    Q_INVOKABLE int rowCount(const QModelIndex &/*parent*/ = QModelIndex()) const override;
     int columnCount(const QModelIndex &/*parent*/ = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
