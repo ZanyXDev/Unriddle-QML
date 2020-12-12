@@ -37,7 +37,8 @@ ApplicationWindow
         anchors.fill: parent
 
         model: chipherTextModel
-        property int m_itemsCount: gridView.model.rowCount
+        property int m_itemsCount: model.rowCount
+
         clip:true
         focus: true
 
@@ -45,12 +46,16 @@ ApplicationWindow
         cellHeight: 65
 
         delegate: CellDelegate{
+            textOpen: model.openletter
+            textClose:  model.closeletter +" ( "+ model.closelettercount +" ) "
+            //textCount: "("+ model.closelettercount +")"
+
             MouseArea{
                 anchors.fill: parent
                 hoverEnabled: true
                 onHoveredChanged: gridView.currentIndex = index
                 onClicked: {
-                    console.log(model.display)
+                    console.log(gridView.model.modeldata)
                 }
             }
         }
