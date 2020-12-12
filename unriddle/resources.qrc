@@ -4,5 +4,6 @@
         <file>res/fonts/DroidSansFallback.ttf</file>
         <file>qml/main.qml</file>
         <file>qml/TextCell.qml</file>
+	<file>qml/models/CellDelegate.qml</file>
     </qresource>
 </RCC>

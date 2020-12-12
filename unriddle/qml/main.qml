@@ -1,29 +1,9 @@
-import QtQuick 2.11
-import QtQuick.Controls 2.4
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.4
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.12
+import "models"
 
-/**
-GridView: Decoration and Navigation
-
-GridView {
- ...
- focus: true
-clip: true
- header: Rectangle {
- width: parent.width; height: 10
- color: "pink"
- }
- footer: Rectangle {
- width: parent.width; height: 10
- color: "lightblue"
- }
- highlight: Rectangle {
- width: parent.width
- color: "lightgray"
- }
-}
-  */
 
 ApplicationWindow
 {
@@ -34,13 +14,15 @@ ApplicationWindow
     property string localFont: _localFont.name
 
     Material.theme: Material.Light
+    //Material.theme: Material.Dark
+    Material.accent: Material.BlueGrey
+
     visible: true
     /**
       * Базовой является плотность mdpi, когда 1px = 1dp.
       * Остальные являются множителями:
       * ldpi(0.75x),mdpi(1x),hdpi(1.5x),xhdpi(2.0x),xxhdpi(3.0x),xxxhdpi(4.0x)
       */
-
     width: 480
     height: 720
     title: qsTr("Unriddle this riddle.")
@@ -49,42 +31,46 @@ ApplicationWindow
         id: _localFont;
         source: "qrc:///res/fonts/DroidSansFallback.ttf"
     }
-/**
-    Grid{
+
+    GridView {
+        id: gridView
         anchors.fill: parent
-        anchors.margins: 4
-        spacing: 1
-        Repeater {
-            model: 24
-            TextCell{
-                textOpen: "Я"
-                textClose: "О"
-                textCount:  index
-                colorOpenText:  Material.color( Material.Red )
-                colorCloseText:  Material.color( Material.Grey)
-                colorCounter:  Material.color( Material.Grey)
+
+        model: chipherTextModel
+        property int m_itemsCount: gridView.model.rowCount
+        clip:true
+        focus: true
+
+        cellWidth: 65
+        cellHeight: 65
+
+        delegate: CellDelegate{
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                onHoveredChanged: gridView.currentIndex = index
+                onClicked: {
+                    console.log(model.display)
+                }
             }
         }
-    }
-*/
-    ListView {
-        id:  listView
-        anchors.fill: parent
-        model: chipherTextModel
-        delegate: Item {
-            implicitHeight: text.height
-            width: listView.width
-            Text {
-                id: text
-                text: model.OpenLetter + ":" +
-                      model.CloseLetterCount;
-            }
 
-            MouseArea {
-                anchors.fill: text
-                onClicked: {
-                    model.CloseLetterCount ++;
-                }
+        header: headerComponent
+
+
+    }
+
+    Component {
+        id: headerComponent
+
+        Rectangle {
+            width: GridView.view.width
+            color: "red"
+            height: 20
+            Text {
+                id: name
+                text: "Item count:"+gridView.m_itemsCount;
+
             }
         }
     }
